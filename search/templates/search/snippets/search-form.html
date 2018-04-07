@@ -1,0 +1,36 @@
+<form id="labnol" method='GET' action='{% url "search:query" %}' class="form my-2 my-lg-0 search-form">
+  <div class='input-group'>
+    <input id="transcript" class="form-control" type="text" placeholder="Search" name='q' aria-label="Search"'>
+    <i onclick="startDictation()" class="fa fa-microphone" style="font-size:24px; padding: 5px 0 0 10px;"></i>
+    </div>
+</form>
+
+<!-- We are implemnting voice search using The new JavaScript Web Speech API
+ The Dictation App also uses the speech recognition API though it writes the transcribed text to textarea field instead of an input box. -->
+<script>
+      function startDictation() {
+
+        if (window.hasOwnProperty('webkitSpeechRecognition')) {
+
+          var recognition = new webkitSpeechRecognition();
+
+          recognition.continuous = false;
+          recognition.interimResults = false;
+
+          recognition.lang = "en-US";
+          recognition.start();
+
+          recognition.onresult = function(e) {
+            document.getElementById('transcript').value
+                                     = e.results[0][0].transcript;
+            recognition.stop();
+            document.getElementById('labnol').submit();
+          };
+
+          recognition.onerror = function(e) {
+            recognition.stop();
+          }
+
+        }
+      }
+  </script>

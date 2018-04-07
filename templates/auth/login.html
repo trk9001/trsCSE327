@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class='text-center'>
+          <h1>Login</h1>
+</div>
+<div class="container">
+      <div class="row">
+        <div class="col my-5">
+
+          <div class="col-sm-5 clo-12 mx-auto">
+          	
+            <form method="POST"> {% csrf_token %}
+              
+              	{{ form }}
+          
+                <input type="submit" class="btn btn-outline-secondary my-3" value="Submit">
+            </form>
+            <p><strong>-- OR --</strong></p>
+			
+            <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-outline-secondary" >
+                <span class="fa fa-google"></span> Sign in with Google
+              </a>
+      <br>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

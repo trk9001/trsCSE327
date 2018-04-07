@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class='text-center'>
+    <h1>Register</h1>
+</div>
+
+<div class="container">
+      <div class="row">
+        <div class="col  my-5">
+
+          <div class="col-sm-6 clo-12 mx-auto">
+          	
+            <form method="POST"> {% csrf_token %}
+              {{ form }}
+              <input type="submit" class="btn btn-outline-secondary my-3" value="Submit">. 
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
